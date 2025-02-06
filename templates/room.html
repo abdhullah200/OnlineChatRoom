@@ -1,0 +1,82 @@
+{% extends 'base.html' %} {% block content %}
+<a href="{{ url_for('home') }}" class="back-btn">&lt;</a>
+<div class="message-box">
+  <h2>Chat Room: {{code}}</h2>
+  <div class="messages" id="messages"></div>
+  <div class="inputs">
+    <input
+      type="text"
+      rows="3"
+      placeholder="Message"
+      name="message"
+      id="message"
+      oninput="notifyTyping()"
+    />
+    <button type="button" name="send" id="send-btn" onClick="sendMessage()">
+      Send
+    </button>
+  </div>
+  <div class="typing-indicator" id="typing-indicator"></div>
+</div>
+<script type="text/javascript">
+  var socketio = io();
+  let typingTimeout;
+  let isTyping = false;
+
+  const messages = document.getElementById("messages");
+  const typingIndicator = document.getElementById("typing-indicator");
+
+  const createMessage = (name, msg) => {
+    const content = `
+    <div class="text">
+        <span>
+            <strong>${name}</strong>: ${msg}
+        </span>
+        <span class="muted">
+            ${new Date().toLocaleString()}
+        </span>
+    </div>
+    `;
+    messages.innerHTML += content;
+  };
+
+  socketio.on("message", (data) => {
+    createMessage(data.name, data.message);
+    typingIndicator.innerHTML = '';
+  });
+
+  socketio.on("typing", (data) => {
+    typingIndicator.innerHTML = `${data.name} is typing...`;
+  });
+
+  socketio.on("stop typing", () => {
+    typingIndicator.innerHTML = '';
+  });
+
+  const sendMessage = () => {
+    const message = document.getElementById("message");
+    if (message.value == "") return;
+    socketio.emit("message", { data: message.value });
+    message.value = "";
+    typingIndicator.innerHTML = '';
+    isTyping = false;
+    socketio.emit("stop typing");
+  };
+
+  const notifyTyping = () => {
+    if (!isTyping) {
+      socketio.emit("typing", { name: "{{ session['name'] }}" });
+      isTyping = true;
+    }
+    clearTimeout(typingTimeout);
+    typingTimeout = setTimeout(() => {
+      isTyping = false;
+      socketio.emit("stop typing");
+    }, 3000); // Send stop typing event after 3 seconds of inactivity
+  };
+</script>
+{% for msg in messages %}
+<script type="text/javascript">
+  createMessage("{{msg.name}}", "{{msg.message}}");
+</script>
+{% endfor %} {% endblock %}

@@ -1,0 +1,134 @@
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons {
+  display: flex;
+  padding: 60px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.join, .create-btn {
+  width: 100%;
+}
+
+.join {
+  display: flex;
+  flex-direction: row;
+}
+
+.message-box {
+  background-color: transparent;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  align-items: stretch;
+}
+
+.messages {
+  overflow-y: scroll;
+  flex: 1;
+  width: 100%;
+}
+
+/* Custom scrollbar styles */
+.messages::-webkit-scrollbar {
+  width: 5px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: #333;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 20px;
+  border: 3px solid #333;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.inputs {
+  padding: 10px;
+  display: flex;
+}
+
+h2 {
+  text-align: center;
+}
+
+#message {
+  flex: 1;
+}
+
+.text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.muted {
+  font-size: 10px;
+  color: darkgray;
+}
+
+.typing-indicator {
+  font-size: 12px;
+  color: darkgray;
+  margin-top: 10px;
+}
+
+.container {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  perspective: 1000px;
+}
+
+body {
+  background-image: url('/static/css/images/945731-3840x2160-desktop-4k-matte-black-wallpaper-image.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  color: white;
+  font-family: 'Pacifico', cursive;
+}
+
+button, input[type="text"] {
+  border-radius: 5px;
+  width: 100px;
+  height: 20px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.452);
+}
+
+button {
+  border-radius: 10px;
+  background-color: #000;
+}
+
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  size: 10px;
+  background-color: transparent
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
