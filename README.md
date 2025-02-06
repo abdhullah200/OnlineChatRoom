@@ -5,25 +5,18 @@ Real-time Chat App with Flask and Socket.IO
 A real-time chat application built with Flask and Socket.IO, allowing users to create or join chat rooms, send messages instantly, and see typing indicators.
 
 Features
-
 🔹 Real-time messaging using WebSockets
-
 🔹 Create or join chat rooms with unique codes
-
 🔹 Typing indicators to see when someone is typing
-
 🔹 Persistent messages within rooms (session-based)
-
 🔹 Dark-themed responsive UI
 
 Installation
 
 Prerequisites
-
 Make sure you have Python installed (preferably 3.7 or higher).
 
 Setup
-
 # Clone the repository
 git clone https://github.com/yourusername/your-repository.git
 cd your-repository
@@ -46,9 +39,7 @@ The application will be accessible at http://127.0.0.1:5000/.
 Usage
 
 Open the app in a browser.
-
 Enter a name and either create a new chat room or join an existing one using a room code.
-
 Start chatting in real-time!
 
 Screenshots
@@ -59,9 +50,7 @@ Screenshots
 Technologies Used
 
 Flask (Backend framework)
-
 Socket.IO (Real-time communication)
-
 HTML, CSS, JavaScript (Frontend UI)
 
 License
